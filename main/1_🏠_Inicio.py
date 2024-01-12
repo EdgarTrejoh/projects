@@ -31,10 +31,15 @@ pie_casa = conn.read(worksheet="PieCasa", usecols=list(range(4)), ttl=5)
 pie_casa = pie_casa.dropna(how="all")
 
 estatus_refinanciamiento = refinanciamiento.groupby(["Estatus"]).count()
+f_inicio_r = (refinanciamiento['FechaInicio'].min())
+f_fin_r = refinanciamiento['FechaFin'].max()
+
 estatus_pie_Casa = pie_casa.groupby(["Estatus"]).count()
+f_inicio_pC = (pie_casa['FechaInicio'].min())
+f_fin_pC = pie_casa['FechaFin'].max()
 
 
-st.write("Estatus de los proyectos asignados")
+st.markdown("## Estatus de los proyectos asignados")
 
 
 refinanc, piecasa = st.tabs([":date: Refinanciamiento", 
@@ -43,6 +48,10 @@ refinanc, piecasa = st.tabs([":date: Refinanciamiento",
 
 with refinanc:
     
+    st.markdown(f"#### :blue[Fecha de inicio {f_inicio_r}]")
+
+    st.markdown(f"#### :blue[Fecha fin {f_fin_r}]")
+
     refinanciaminto_status = px.bar(
         estatus_refinanciamiento, 
         x =estatus_refinanciamiento.index,
@@ -68,6 +77,10 @@ with refinanc:
     st.plotly_chart(refinanciaminto_status, use_container_width=True)
 
 with piecasa:
+
+    st.markdown(f"#### :blue[Fecha de inicio {f_inicio_pC}]")
+
+    st.markdown(f"#### :blue[Fecha fin {f_fin_pC}]")
 
     pie_casa_status = px.bar(
         estatus_pie_Casa, 
