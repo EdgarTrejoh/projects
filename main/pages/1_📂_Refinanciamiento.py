@@ -22,9 +22,9 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
 #Conection
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-projects = conn.read(worksheet="Refinanciamiento", usecols=list(range(5)), ttl=5)
+projects = conn.read(worksheet="Refinanciamiento", usecols=list(range(10)), ttl=5)
 
-existing_data = conn.read(worksheet="Refinanciamiento", usecols=list(range(5)), ttl=5)
+existing_data = conn.read(worksheet="Refinanciamiento", usecols=list(range(10)), ttl=5)
 existing_data = existing_data.dropna(how="all")
 
 # Constants

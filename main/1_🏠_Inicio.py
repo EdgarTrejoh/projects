@@ -124,11 +124,54 @@ with refinanc:
 
     st.plotly_chart(refinanciaminto_status, use_container_width=True)
 
+#************************************
+          # Pie de Casa
+#************************************
+
+#Vista de project Pie de Casa:
+project_pie_casa = px.timeline(
+    pie_casa,
+    x_start ='FechaInicio',
+    x_end = 'FechaFin',
+    y = 'Actividad',
+    color ='Actividad',
+    color_discrete_sequence =px.colors.sequential.Plasma_r,
+    labels = {'Actividad': 'Actividad'},
+    title = "Cronograma de actividades"
+    )
+
+project_pie_casa.update_yaxes(autorange="reversed")
+
+fecha_actual = datetime.now().strftime('%Y-%m-%d')
+
+project_pie_casa.add_shape(
+    type= 'line',
+    x0 = fecha_actual,
+    x1 = fecha_actual,
+    y0 = 0,
+    y1 = 1,
+    xref = 'x',
+    yref = 'paper', # yref='paper' para que sea en relación a la altura del gráfico
+    line = dict(color='red', width=2), # Personalizar el color y el ancho de la línea
+    )
+
+project_pie_casa.update_layout(
+    height = 380,
+    width=480,
+    showlegend = False,
+    title_font=dict(
+        color="#027034",
+        size=20
+        )
+    )    
+
 with piecasa:
 
     st.markdown(f"#### :blue[Fecha de inicio {f_inicio_pC}]")
 
     st.markdown(f"#### :blue[Fecha fin {f_fin_pC}]")
+
+    st.plotly_chart(project_pie_casa, use_container_width=True)
 
     pie_casa_status = px.bar(
         estatus_pie_Casa, 
