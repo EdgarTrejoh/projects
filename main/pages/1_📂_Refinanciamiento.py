@@ -35,11 +35,11 @@ Estatus = [
         "Suspensión Temporal",
 ]
 
-Actividades = conn.read(worksheet="Actividades", usecols=list(range(1)), ttl=5)
+Actividades = conn.read(worksheet="Actividades", usecols=list(range(2)), ttl=5)
 Actividades = Actividades.dropna(how="all")
-Actividades_sorted = sorted(Actividades)
+#Actividades_sorted = sorted(Actividades)
 
-st.dataframe(Actividades_sorted)
+#st.dataframe(Actividades_sorted)
 
 st.markdown("# :blue[Seguimiento de proyectos :chart_with_upwards_trend:]")
 #st.info(
@@ -60,7 +60,7 @@ if action == "Agregar actividades al proyecto":
     st.markdown("## :green[Ingresa las actividades del proyecto :notebook:]")
     with st.form(key="project_form"):
         actividad = st.selectbox(
-            "Actividad*", options=Actividades_sorted, index=None
+            "Actividad*", options=Actividades, index=None
           )
         estatus = st.selectbox(
             "Estatus*", options=Estatus, index=None
