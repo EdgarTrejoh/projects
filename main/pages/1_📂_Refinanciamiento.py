@@ -36,8 +36,9 @@ Estatus = [
 ]
 
 Actividades = conn.read(worksheet="Actividades", usecols=list(range(1)), ttl=5)
-Actividades = sorted(Actividades)
-#Actividades = Actividades.dropna(how="all")
+Actividades = Actividades.dropna(how="all")
+Actividades_sorted = sorted(Actividades)
+
 
 st.markdown("# :blue[Seguimiento de proyectos :chart_with_upwards_trend:]")
 #st.info(
@@ -58,7 +59,7 @@ if action == "Agregar actividades al proyecto":
     st.markdown("## :green[Ingresa las actividades del proyecto :notebook:]")
     with st.form(key="project_form"):
         actividad = st.selectbox(
-            "Actividad*", options=Actividades, index=None
+            "Actividad*", options=Actividades_sorted, index=None
           )
         estatus = st.selectbox(
             "Estatus*", options=Estatus, index=None
