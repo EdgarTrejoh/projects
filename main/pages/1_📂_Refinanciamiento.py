@@ -37,7 +37,7 @@ Estatus = [
 
 Actividades = conn.read(worksheet="Actividades", usecols=list(range(1)), ttl=5)
 Actividades = sorted(Actividades)
-Actividades = Actividades.dropna(how="all")
+#Actividades = Actividades.dropna(how="all")
 
 st.markdown("# :blue[Seguimiento de proyectos :chart_with_upwards_trend:]")
 #st.info(
