@@ -39,6 +39,7 @@ Actividades = conn.read(worksheet="Actividades", usecols=list(range(1)), ttl=5)
 Actividades = Actividades.dropna(how="all")
 Actividades_sorted = sorted(Actividades)
 
+st.dataframe(Actividades_sorted)
 
 st.markdown("# :blue[Seguimiento de proyectos :chart_with_upwards_trend:]")
 #st.info(
